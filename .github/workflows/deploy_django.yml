@@ -1,0 +1,23 @@
+name: Django deploy test
+
+run-name: Access deploy
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+
+jobs:
+  deploy:
+    name: Access server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a file
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: echo hello world > test_django/hello.txt
