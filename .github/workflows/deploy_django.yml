@@ -9,13 +9,14 @@ on:
       - master
 
 
+
 jobs:
   deploy:
     name: Access server
     runs-on: ubuntu-latest
     steps:
       - name: Create a file
-        uses: appleboy/ssh-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
