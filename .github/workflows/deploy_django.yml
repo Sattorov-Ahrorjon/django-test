@@ -25,7 +25,7 @@ jobs:
             git pull ${{secrets.REPO_URL}}
             docker build -t django-test .
             docker tag django-test sattorovdevops/django-test:latest
-            docker push sattorovdevops/django-test:latest
+            docker push sattorovdevops/django-test
             docker compose down
             docker-compose up -d
 
