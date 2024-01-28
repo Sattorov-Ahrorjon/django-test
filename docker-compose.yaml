@@ -10,33 +10,38 @@ services:
 #      - .:/root/main
     ports:
       - "8002:8002"
-  watchtower:
-    image: containrrr/watchtower
-    container_name: watchtower
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      TZ: Asia/Tashkent
-#      WATCHTOWER_MONITOR_ONLY: 'true'
-#      WATCHTOWER_CLEANUP: "true"
-      WATCHTOWER_DEBUG: "true"
-#      WATCHTOWER_NOTIFICATION_REPORT: "true"
-      WATCHTOWER_NOTIFICATIONS: shoutrrr
-      WATCHTOWER_NOTIFICATION_URL: https://api.telegram.org/bot6635057160:AAFlh9_o_v5nrJWg28eGvY947gmFTXENXpM/sendMessage?chat_id=5337749599&text={event_name} worked successfully
-#      WATCHTOWER_NOTIFICATION_EMAIL_FROM: your_gmail
-#      WATCHTOWER_NOTIFICATION_EMAIL_TO: recipient_email
-#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: smtp.gmail.com
-#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: 587
-#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: your_gmail
-#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: gmail_app_password
-    command: --interval 30 django_web
 
 
-#environment:
-#      WATCHTOWER_SCHEDULE: "0 0 1 * * *"
-#      TZ: Asia/Hong_Kong
-#      WATCHTOWER_CLEANUP: "true"
-#      WATCHTOWER_DEBUG: "true"
-#      WATCHTOWER_NOTIFICATION_REPORT: "true"
-#      WATCHTOWER_NOTIFICATION_URL: "discord://${TOKEN}@${CHANNEL_ID}"
+
+
+
+##  watchtower:
+##    image: containrrr/watchtower
+##    container_name: watchtower
+##    restart: always
+##    volumes:
+##      - /var/run/docker.sock:/var/run/docker.sock
+##    environment:
+##      TZ: Asia/Tashkent
+##      WATCHTOWER_MONITOR_ONLY: 'true'
+##      WATCHTOWER_CLEANUP: "true"
+##      WATCHTOWER_DEBUG: "true"
+##      WATCHTOWER_NOTIFICATION_REPORT: "true"
+##      WATCHTOWER_NOTIFICATIONS: shoutrrr
+##      WATCHTOWER_NOTIFICATION_URL: https://api.telegram.org/bot6635057160:AAFlh9_o_v5nrJWg28eGvY947gmFTXENXpM/sendMessage?chat_id=5337749599&text={event_name} worked successfully
+##      WATCHTOWER_NOTIFICATION_EMAIL_FROM: your_gmail
+##      WATCHTOWER_NOTIFICATION_EMAIL_TO: recipient_email
+##      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: smtp.gmail.com
+##      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: 587
+##      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: your_gmail
+##      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: gmail_app_password
+#    command: --interval 30 django_web
+#
+#
+##environment:
+##      WATCHTOWER_SCHEDULE: "0 0 1 * * *"
+##      TZ: Asia/Hong_Kong
+##      WATCHTOWER_CLEANUP: "true"
+##      WATCHTOWER_DEBUG: "true"
+##      WATCHTOWER_NOTIFICATION_REPORT: "true"
+##      WATCHTOWER_NOTIFICATION_URL: "discord://${TOKEN}@${CHANNEL_ID}"
