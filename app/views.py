@@ -11,5 +11,5 @@ def hello_from_django(request):
     return HttpResponse("Hello from: Django!")
 
 
-# def index(request):
-#     return HttpResponse("Main Page")
+def index(request):
+    return HttpResponse("Main Page")
