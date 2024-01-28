@@ -9,3 +9,7 @@ def hello_world(request):
 
 def hello_from_django(request):
     return HttpResponse("Hello from: Django!")
+
+
+def index(request):
+    return HttpResponse("Main Page")
