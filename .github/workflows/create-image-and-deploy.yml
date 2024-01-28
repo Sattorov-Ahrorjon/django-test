@@ -49,3 +49,25 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+  deploy:
+    needs: push_to_registries
+    name: Access server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a file
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            mkdir -p test_django/
+            cd test_django/
+            git init
+            git pull ${{secrets.REPO_URL}}
+            docker rmi -f sattorovdevops/django-test:latest
+            docker build -t django-test .
+            docker tag django-test sattorovdevops/django-test:latest
+            docker push sattorovdevops/django-test
+            docker compose down
+            docker-compose up -d
