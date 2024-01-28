@@ -17,3 +17,7 @@ def index(request):
 
 def invoice(request):
     return HttpResponse("Invoice Page")
+
+
+def order(request):
+    return HttpResponse("Order Page")
