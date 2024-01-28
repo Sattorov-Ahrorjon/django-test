@@ -2,11 +2,25 @@ version: '3.7'
 
 services:
   django:
-#    image: django-test:latest
-    build: .
+    image: django-test:latest
     command: python manage.py runserver 0.0.0.0:8002
     container_name: django_web
 #    volumes:
 #      - .:/root/main
     ports:
       - "8002:8002"
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+#    environment:
+#      WATCHTOWER_MONITOR_ONLY: 'true'
+#      WATCHTOWER_NOTIFICATIONS: email
+#      WATCHTOWER_NOTIFICATION_EMAIL_FROM: your_gmail
+#      WATCHTOWER_NOTIFICATION_EMAIL_TO: recipient_email
+#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: smtp.gmail.com
+#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: 587
+#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: your_gmail
+#      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: gmail_app_password
+    command: --interval 30 django_web

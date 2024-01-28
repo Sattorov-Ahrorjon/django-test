@@ -1,11 +1,9 @@
 FROM python:3.10.12
 
-WORKDIR /root/main
+COPY . .
 
-COPY . /root/main/
+RUN pip install -r requirements.txt
 
-RUN pip install -r /root/main/requirements.txt
+RUN python manage.py makemigrations
 
-RUN python /root/main/manage.py makemigrations
-
-RUN python /root/main/manage.py migrate
+RUN python manage.py migrate

@@ -4,10 +4,8 @@ run-name: Access deploy
 
 on:
   push:
-    branches:
-      - main
-      - master
-
+    paths:
+      - "**deploy_django.yml"
 
 
 jobs:
@@ -23,8 +21,11 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             cd test_django/
-            docker-compose down
-            docker-compose up -d
+            git init
+            git pull ${{secrets.REPO_URL}}
+#            Docker-compose ni qo'lda ishga tushiramiz
+#            docker-compose down
+#            docker-compose up -d
 
 
 
@@ -36,3 +37,9 @@ jobs:
 #            docker-compose down
 #            docker-compose up -d django_web
 ##            docker-compose up --build -d
+#
+#on:
+#  workflow_run:
+#    workflows: ["CI build"]
+#    types:
+#      - completed
