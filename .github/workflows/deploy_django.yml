@@ -21,4 +21,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          script: echo "hello world" > test_django/hello.txt
+#          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            cd test_django/
+            git pull ${{secrets.REPO_URL}}
+            docker-compose down 
+            docker-compose up --build -d
