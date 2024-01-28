@@ -24,7 +24,7 @@ jobs:
           script: |
             cd test_django/
             docker-compose down
-            docker-compose up -d django_web
+            docker-compose up -d
 
 
 
