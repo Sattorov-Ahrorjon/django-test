@@ -6,3 +6,6 @@ from django.http.response import HttpResponse
 def hello_world(request):
     return HttpResponse("Hello world")
 
+
+def hello_from_django(request):
+    return HttpResponse("Hello from: Django!")
