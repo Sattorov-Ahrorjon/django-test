@@ -21,12 +21,18 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-#          port: ${{ secrets.DEPLOY_PORT }}
           script: |
             cd test_django/
-#            git init
-#            git pull ${{secrets.REPO_URL}}
-#            docker build -t test-docker-image .
             docker-compose down
             docker-compose up -d django_web
-#            docker-compose up --build -d
+
+
+
+#          script: |
+#            cd test_django/
+##            git init
+##            git pull ${{secrets.REPO_URL}}
+##            docker build -t test-docker-image .
+#            docker-compose down
+#            docker-compose up -d django_web
+##            docker-compose up --build -d
