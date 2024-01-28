@@ -3,7 +3,7 @@ version: '3.7'
 
 services:
   django:
-    image: django-test
+    image: sattorovdevops/django-test
     command: python manage.py runserver 0.0.0.0:8002
     container_name: django_web
 #    volumes:
