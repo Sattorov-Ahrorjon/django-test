@@ -8,6 +8,7 @@ on:
       - "**deploy_django.yml"
 
 
+
 jobs:
   deploy:
     name: Access server
