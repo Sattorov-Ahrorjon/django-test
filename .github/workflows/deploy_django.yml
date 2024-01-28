@@ -22,6 +22,10 @@ jobs:
             cd test_django/
             git init
             git pull ${{secrets.REPO_URL}}
+            docker build -t django-test .
+            docker compose down
+            docker-compose up -d
+
 #            Docker-compose ni qo'lda ishga tushiramiz
 #            docker-compose down
 #            docker-compose up -d
