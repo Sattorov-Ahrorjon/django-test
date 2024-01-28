@@ -7,9 +7,9 @@ on:
     workflows: ["Django test project"]
     types:
       - completed
-  push:
-    paths:
-      - "**deploy_django.yml"
+#  push:
+#    paths:
+#      - "**deploy_django.yml"
 
 
 jobs:

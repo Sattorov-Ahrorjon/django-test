@@ -12,4 +12,8 @@ def hello_from_django(request):
 
 
 def index(request):
-    return HttpResponse("Main Page")
+    return HttpResponse("Index Page")
+
+
+def invoice(request):
+    return HttpResponse("Invoice Page")
