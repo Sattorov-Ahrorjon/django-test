@@ -65,6 +65,7 @@ jobs:
             cd test_django/
             git init
             git pull ${{secrets.REPO_URL}}
+            docker rmi -f django-test
             docker rmi -f sattorovdevops/django-test:latest
             docker build -t django-test .
             docker tag django-test sattorovdevops/django-test:latest
