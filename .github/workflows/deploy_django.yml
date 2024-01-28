@@ -24,6 +24,7 @@ jobs:
 #          port: ${{ secrets.DEPLOY_PORT }}
           script: |
             cd test_django/
+            git init
             git pull ${{secrets.REPO_URL}}
             docker-compose down 
             docker-compose up --build -d
