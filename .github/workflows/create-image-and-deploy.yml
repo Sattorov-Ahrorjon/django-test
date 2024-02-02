@@ -29,8 +29,7 @@ jobs:
             
             try {
             docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-            } 
-            catch {
+            } catch {
             echo "Not found docker image"
             }
             
