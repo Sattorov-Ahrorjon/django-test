@@ -68,9 +68,9 @@ jobs:
             git pull ${{secrets.REPO_URL}}
             docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
             docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
-#            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
+            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker compose down
 #            docker-compose up -d
 
