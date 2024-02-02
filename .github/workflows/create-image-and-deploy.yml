@@ -64,6 +64,7 @@ jobs:
             cd ${{ secrets.D_IMAGE_NAME }}/
             docker compose down
             git init
+            docker images
             git pull ${{secrets.REPO_URL}}
             docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
             docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
