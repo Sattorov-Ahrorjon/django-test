@@ -27,9 +27,10 @@ jobs:
             docker images
             git pull ${{secrets.REPO_URL}}
             
-            {
+            try {
             docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-            } || {
+            } 
+            catch {
             echo "Not found docker image"
             }
             
