@@ -6,8 +6,20 @@ services:
     restart: always
     image: sattorovdevops/django-test
     command: python manage.py runserver 0.0.0.0:8002
-    container_name: django_web
+#    container_name: django_web
 #    volumes:
 #      - .:/root/main
     ports:
       - "8002:8002"
+
+
+#services:
+#  django:
+#    restart: always
+#    image: DOCKER_USERNAME/D_IMAGE_NAME
+#    command: python manage.py runserver 0.0.0.0:8002
+#    container_name: django_web
+##    volumes:
+##      - .:/root/main
+#    ports:
+#      - "8002:8002"
