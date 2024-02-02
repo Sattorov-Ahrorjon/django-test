@@ -6,11 +6,10 @@ on:
   push:
     branches:
       - main
-      - master
 
 
 jobs:
-  push_to_registries:
+  push_to_dockerhub:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
     permissions:
@@ -38,7 +37,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            sattorovdevops/django-test
+            ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}
             ghcr.io/${{ github.repository }}
 
       - name: Build and push Docker images
@@ -49,8 +48,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  deploy:
-    needs: push_to_registries
+  deploy_to_server:
+    needs: push_to_dockerhub
     name: Access server
     runs-on: ubuntu-latest
     steps:
@@ -61,14 +60,23 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            mkdir -p test_django/
-            cd test_django/
+            mkdir -p ${{ secrets.FOLDER_FOR_DEPLOYMENT }}/
+            cd ${{ secrets.FOLDER_FOR_DEPLOYMENT }}/
             git init
             git pull ${{secrets.REPO_URL}}
-            docker rmi -f django-test
-            docker rmi -f sattorovdevops/django-test:latest
-            docker build -t django-test .
-            docker tag django-test sattorovdevops/django-test:latest
-            docker push sattorovdevops/django-test
+            docker rmi -f ${{ secrets.D_IMAGE_NAME }}
+            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker build -t ${{ secrets.D_IMAGE_NAME }} .
+            docker tag ${{ secrets.D_IMAGE_NAME }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}
             docker compose down
             docker-compose up -d
+
+
+#  DOCKER_USERNAME, D_IMAGE_NAME, DOCKER_PASSWORD
+
+# FOLDER_FOR_DEPLOYMENT
+
+# HOST, USERNAME, PRIVATE_KEY
+
+# REPO_URL
