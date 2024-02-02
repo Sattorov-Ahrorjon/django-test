@@ -5,7 +5,7 @@ run-name: "${{ github.actor }} ${{ github.event_name }}ed from ${{ github.ref_na
 on:
   push:
     branches:
-      - delete
+      - main
 
 
 jobs:
@@ -16,18 +16,37 @@ jobs:
       - name: Create a file
         uses: appleboy/ssh-action@master
         with:
+          # The server IP of our VPS from DigitalOcean
+          # or any other provider. This is again
+          # passed in as a secret.
           host: ${{ secrets.HOST }}
+          # Username of the user sshing into the server
           username: ${{ secrets.USERNAME }}
+          # The private ssh key in order to get access
           key: ${{ secrets.PRIVATE_KEY }}
-          script: |
-            mkdir -p ${{ secrets.D_IMAGE_NAME }}_${{ github.actor }}/
-            cd ${{ secrets.D_IMAGE_NAME }}/
-            docker compose down
-            git init
-            docker images
-            git pull ${{secrets.REPO_URL}}
-            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+          script: | 
+            docker pull ghcr.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker run ghcr.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+
+
+
+
+
+
+#
+#
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.PRIVATE_KEY }}
+#          script: |
+#            mkdir -p ${{ secrets.D_IMAGE_NAME }}_${{ github.actor }}/
+#            cd ${{ secrets.D_IMAGE_NAME }}/
+#            docker compose down
+#            git init
+#            docker images
+#            git pull ${{secrets.REPO_URL}}
+#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
+#            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
 #            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
