@@ -19,29 +19,19 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          script: | 
-            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-            docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-
-#
-#
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
-#          key: ${{ secrets.PRIVATE_KEY }}
-#          script: |
-#            mkdir -p ${{ secrets.D_IMAGE_NAME }}_${{ github.actor }}/
-#            cd ${{ secrets.D_IMAGE_NAME }}/
-#            docker compose down
-#            git init
-#            docker images
-#            git pull ${{secrets.REPO_URL}}
-#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-#            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+          script: |
+            mkdir -p ${{ github.event.repository.name }}/
+            cd ${{ github.event.repository.name }}/
+            git init
+            docker images
+            git pull ${{secrets.REPO_URL}}
+            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
+            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
 #            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            docker compose down
-#            docker-compose up -d
+            docker compose down $(docker ps -a -q)
+            docker-compose up -d
 
 
 #  DOCKER_USERNAME, D_IMAGE_NAME, DOCKER_PASSWORD
