@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create a file
+        if: always()
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
