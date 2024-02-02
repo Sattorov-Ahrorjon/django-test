@@ -1,6 +1,6 @@
 name: Django test project
 
-run-name: Enter the latest changes in the project
+run-name: "${{ github.actor }} ${{ github.event_name }}ed from ${{ github.ref_name }} branch"
 
 on:
   push:
