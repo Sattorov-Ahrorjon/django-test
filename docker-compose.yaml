@@ -5,12 +5,12 @@ services:
   django:
     restart: always
     image: sattorovdevops/django-test
-    command: python manage.py runserver 0.0.0.0:8002
+    command: python manage.py runserver 0.0.0.0:8001
     container_name: docker_django_test
 #    volumes:
 #      - .:/root/main
     ports:
-      - "8002:8002"
+      - "8001:8001"
 
 
 #services:
