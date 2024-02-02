@@ -62,6 +62,7 @@ jobs:
           script: |
             mkdir -p ${{ secrets.D_IMAGE_NAME }}/
             cd ${{ secrets.D_IMAGE_NAME }}/
+            docker compose down
             git init
             git pull ${{secrets.REPO_URL}}
             docker rmi -f ${{ secrets.D_IMAGE_NAME }}
