@@ -16,22 +16,12 @@ jobs:
       - name: Create a file
         uses: appleboy/ssh-action@master
         with:
-          # The server IP of our VPS from DigitalOcean
-          # or any other provider. This is again
-          # passed in as a secret.
           host: ${{ secrets.HOST }}
-          # Username of the user sshing into the server
           username: ${{ secrets.USERNAME }}
-          # The private ssh key in order to get access
           key: ${{ secrets.PRIVATE_KEY }}
           script: | 
-            docker pull ghcr.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-            docker run ghcr.io/${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-
-
-
-
-
+            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+            docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 
 #
 #
