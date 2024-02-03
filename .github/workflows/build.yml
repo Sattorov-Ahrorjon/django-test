@@ -8,7 +8,6 @@ on:
       - main
 
 
-
 jobs:
   deploy_to_server:
     name: Access server
@@ -67,9 +66,6 @@ jobs:
               url=url
               )
 
-
-
-#  DOCKER_USERNAME, D_IMAGE_NAME, DOCKER_PASSWORD
 
 #  HOST, USERNAME, PRIVATE_KEY
 
