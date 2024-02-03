@@ -30,45 +30,31 @@ jobs:
             docker compose down
             docker rmi $(docker compose images -a -q)
             docker-compose up -d
-
-      - name: "Get notify to admin"
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Send a notification to the channel"
         shell: python
         run: |
-          print("Hello")
-      - name: Message job1 status
-        run: echo "### Job1 Done! :rocket:" >> $GITHUB_STEP_SUMMARY
-
-
-
-
-
-
-# $(docker ps -a -q)
-
-#            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
-#            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-
-#            try {
-#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-#            } catch {
-#            echo "Not found docker image"
-#            }
-
-#            (
-#            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            ) || (
-#            echo "Not found docker compose"
-#            )
-
-
-
-
+          import requests
+          token = ${{ secrets.BOT_TOKEN }}
+          token = "6973086969:AAGNWI_gjiRlQU8au9MTIMOliL6tYHAP-TQ"
+          
+          channel_id = ${{ secrets.CHANNEL_ID }}
+          channel_id = "-1001990832664"
+          
+          event_name = str(${{ secrets.Repository_nane }})
+          
+          url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={channel_id}&text={event_name} worked successfully"
+          
+          requests.get(
+              url=url
+              )
 
 
 
 #  DOCKER_USERNAME, D_IMAGE_NAME, DOCKER_PASSWORD
 
-# HOST, USERNAME, PRIVATE_KEY
+#  HOST, USERNAME, PRIVATE_KEY
 
-# REPO_URL
+#  REPO_URL
