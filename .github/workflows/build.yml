@@ -30,7 +30,7 @@ jobs:
             docker rmi $(docker compose images -a -q)
             docker-compose up -d
       - name: "Report an error to the channel"
-        if: ${{ cancelled() }}
+        if: cancelled()
         shell: python
         run: |
           import requests
