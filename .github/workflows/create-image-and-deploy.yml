@@ -27,19 +27,6 @@ jobs:
             git init
             docker images
             git pull ${{secrets.REPO_URL}}
-            
-
-#            try {
-#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
-#            } catch {
-#            echo "Not found docker image"
-#            }
-            
-#            (
-#            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
-#            ) || (
-#            echo "Not found docker compose"
-#            )
 
             docker compose down $(docker ps -a -q)
             docker-compose up -d
@@ -47,6 +34,23 @@ jobs:
 #            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
 #            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
 #            docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+
+#            try {
+#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
+#            } catch {
+#            echo "Not found docker image"
+#            }
+
+#            (
+#            docker rmi -f ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
+#            ) || (
+#            echo "Not found docker compose"
+#            )
+
+
+
+
+
 
 
 #  DOCKER_USERNAME, D_IMAGE_NAME, DOCKER_PASSWORD
