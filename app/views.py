@@ -7,17 +7,5 @@ def hello_world(request):
     return HttpResponse("Hello world")
 
 
-def hello_from_django(request):
-    return HttpResponse("Hello from: Django!")
-
-
-def index(request):
-    return HttpResponse("Index Page")
-
-
-def invoice(request):
-    return HttpResponse("Invoice Page")
-
-
-def order(request):
-    return HttpResponse("Order Page")
+def hello_from_django(request, name):
+    return HttpResponse(f"Hello from: Django! {name}")
