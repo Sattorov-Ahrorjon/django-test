@@ -31,20 +31,21 @@ jobs:
             docker rmi $(docker compose images -a -q)
             docker-compose up -d
   notify:
+    needs: [deploy_to_server]
     runs-on: ubuntu-latest
     steps:
       - name: "Send a notification to the channel"
         shell: python
         run: |
           import requests
-          token = ${{ secrets.BOT_TOKEN }}
+#          token = ${{ secrets.BOT_TOKEN }}
           token = "6973086969:AAGNWI_gjiRlQU8au9MTIMOliL6tYHAP-TQ"
           
-          channel_id = ${{ secrets.CHANNEL_ID }}
+#          channel_id = ${{ secrets.CHANNEL_ID }}
           channel_id = "-1001990832664"
           
-          event_name = str(${{ secrets.Repository_nane }})
-          
+#          event_name = str(${{ secrets.Repository_nane }})
+          event_name = "Django test"
           url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={channel_id}&text={event_name} worked successfully"
           
           requests.get(
