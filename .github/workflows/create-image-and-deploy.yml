@@ -28,8 +28,9 @@ jobs:
             docker images
             git pull ${{secrets.REPO_URL}}
 
-            docker compose down $(docker ps -a -q)
+            docker compose down
             docker-compose up -d
+# $(docker ps -a -q)
 
 #            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
 #            docker tag ${{ secrets.D_IMAGE_NAME }}:latest  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.D_IMAGE_NAME }}:latest
