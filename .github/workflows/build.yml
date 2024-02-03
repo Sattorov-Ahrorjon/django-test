@@ -31,7 +31,7 @@ jobs:
             docker-compose up -d
 
   success_message:
-    if: success() && true
+    if: success()
     needs: [deploy_to_server]
     runs-on: ubuntu-latest
     steps:
