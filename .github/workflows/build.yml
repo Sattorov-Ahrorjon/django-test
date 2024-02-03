@@ -20,7 +20,6 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
           script: |
             mkdir -p ${{ github.event.repository.name }}/
             cd ${{ github.event.repository.name }}/
