@@ -3,12 +3,12 @@ version: '3.7'
 
 services:
   django:
-    build:
-#      context: docker_django_test
-      dockerfile: ./Dockerfile
     restart: always
-    command: python manage.py runserver 0.0.0.0:8002
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
     container_name: docker_django_test
+    volumes:
+      - .:/
     ports:
       - "8002:8002"
 
