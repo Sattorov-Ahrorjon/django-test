@@ -27,9 +27,11 @@ jobs:
             git init
             docker images
             git pull ${{secrets.REPO_URL}}
-            
-            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
+
+#            docker rmi -f ${{ secrets.D_IMAGE_NAME }}:latest
+
             docker compose down
+            docker rmi $(docker images -a -q)
             docker-compose up -d
 # $(docker ps -a -q)
 
