@@ -29,8 +29,8 @@ jobs:
             docker compose down
             docker rmi $(docker compose images -a -q)
             docker-compose up -d
-      - name: "Report an error to the channel"
-        if: cancelled()
+      - name: Report an error to the channel
+        if: failure()
         shell: python
         run: |
           import requests
@@ -48,7 +48,7 @@ jobs:
     needs: [deploy_to_server]
     runs-on: ubuntu-latest
     steps:
-      - name: "Send a notification to the channel"
+      - name: Send a notification to the channel
         shell: python
         run: |
           import requests
