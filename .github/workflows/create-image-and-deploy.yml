@@ -31,6 +31,7 @@ jobs:
             docker compose down
             docker rmi $(docker images -a -q)
             docker-compose up -d
+
 # $(docker ps -a -q)
 
 #            docker build -t ${{ secrets.D_IMAGE_NAME }}:latest .
