@@ -30,6 +30,7 @@ jobs:
             docker compose down
             docker rmi $(docker compose images -a -q)
             docker-compose up -d
+
   notify:
     needs: [deploy_to_server]
     runs-on: ubuntu-latest
