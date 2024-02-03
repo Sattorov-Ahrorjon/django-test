@@ -7,13 +7,56 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+    command: python manage.py runserver 0.0.0.0:8002
     container_name: docker_django_test
     image: docker_django_test:latest
-#    volumes:
-#      - .:./
     ports:
       - "8002:8002"
+
+
+#services:
+#  django:
+#    restart: always
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    command: python manage.py runserver 0.0.0.0:8002
+#    container_name: DOCKER_IMAGE_NAME
+#    image: DOCKER_IMAGE_NAME:latest
+#    ports:
+#      - "8002:8002"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#   bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+
+#    services:
+#      django:
+#        restart: always
+#        build:
+#          context: .
+#          dockerfile: Dockerfile
+#        command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8002"
+#        container_name: docker_django_test
+#        image: docker_django_test:latest
+#        ports:
+#          - "8002:8002"
+
+
 
 
 #services:

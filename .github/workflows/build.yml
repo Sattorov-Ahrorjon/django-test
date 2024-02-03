@@ -25,12 +25,23 @@ jobs:
             mkdir -p ${{ github.event.repository.name }}/
             cd ${{ github.event.repository.name }}/
             git init
-            docker images
             git pull ${{secrets.REPO_URL}}
             
             docker compose down
-            docker rmi $(docker images -a -q)
+            docker rmi $(docker compose images -a -q)
             docker-compose up -d
+
+      - name: "Get notify to admin"
+        shell: python
+        run: |
+          print("Hello")
+      - name: Message job1 status
+        run: echo "### Job1 Done! :rocket:" >> $GITHUB_STEP_SUMMARY
+
+
+
+
+
 
 # $(docker ps -a -q)
 
